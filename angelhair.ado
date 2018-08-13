@@ -1,33 +1,33 @@
-program define angelhair 
+program define angelhair
 	syntax varlist(min=2 max=2), by(varname) ///
-		[ hnum(integer 20)  ///
-		hcolor(string) * ]
-		
-	if "`hcolor'" == "" {
-		local hcolor "red"
-	}
+    [ hnum(integer 20)  ///
+    hcolor(string) * ]
 
-	qui levelsof `by'
-	local num = r(r)
+  if "`hcolor'" == "" {
+    local hcolor "red"
+  }
 
-	qui tab `by', matrow(ids)
-	preserve
-	svmat ids
-	gen ran = runiform() if !missing(ids)
-	sort ran in 1/`num'
+  qui levelsof `by'
+  local num = r(r)
 
-	forvalues i = 1/`num' {
-		local id = ids[`i']
-		local color = "gs13"
-		if `i' > `num' - `hnum' {
-			local color = "`hcolor'"
-		}
-		local formula `formula' || line `varlist' if `by' == `id', lcolor("`color'")
-	}
+  qui tab `by', matrow(ids)
+  preserve
+  svmat ids
+  gen ran = runiform() if !missing(ids)
+  sort ran in 1/`num'
+
+  forvalues i = 1/`num' {
+    local id = ids[`i']
+    local color = "gs13"
+    if `i' > `num' - `hnum' {
+      local color = "`hcolor'"
+    }
+    local formula `formula' || line `varlist' if `by' == `id', lcolor("`color'")
+  }
 
 
-	twoway scatter `varlist', mcolor("white") `formula' , legend(off) `options'
+  twoway scatter `varlist', mcolor("white") `formula' , legend(off) `options'
 
-	restore
+  restore
 
 end
