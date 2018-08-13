@@ -1,10 +1,14 @@
 program define angelhair
 	syntax varlist(min=2 max=2), by(varname) ///
     [ hnum(integer 20)  ///
-    hcolor(string) * ]
+    hcolor(string) ///
+		bgcolor(string) * ]
 
   if "`hcolor'" == "" {
     local hcolor "red"
+  }
+  if "`bgcolor'" == "" {
+    local hcolor "gs13"
   }
 
   qui levelsof `by'
@@ -18,7 +22,7 @@ program define angelhair
 
   forvalues i = 1/`num' {
     local id = ids[`i']
-    local color = "gs13"
+    local color = "`bgcolor'"
     if `i' > `num' - `hnum' {
       local color = "`hcolor'"
     }
