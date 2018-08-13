@@ -1,14 +1,14 @@
 program define angelhair
-	syntax varlist(min=2 max=2), by(varname) ///
+  syntax varlist(min=2 max=2), by(varname) ///
     [ hnum(integer 20)  ///
     hcolor(string) ///
-		bgcolor(string) * ]
+    bgcolor(string) * ]
 
   if "`hcolor'" == "" {
     local hcolor "red"
   }
   if "`bgcolor'" == "" {
-    local hcolor "gs13"
+    local bgcolor "gs13"
   }
 
   qui levelsof `by'
