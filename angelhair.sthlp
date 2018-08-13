@@ -45,4 +45,4 @@ selection of {it:hnum} individual trajectories.
 {title:Examples}
 
 {phang2}{stata webuse pig:. sysuse pig}{p_end}
-{phang2}{stata angelhair weight week, by(id) hnum(5) hcolor("blue") xtitle("Week") ytitle("Weight"): . angelhair weight week, by(id) hnum(5) hcolor("blue") xtitle("Week") ytitle("Weight")}{p_end}
+{phang2}{stata angelhair weight week, by(id) hnum(5) hcolor(blue) xtitle("Week") ytitle("Weight"): . angelhair weight week, by(id) hnum(5) hcolor(blue) xtitle("Week") ytitle("Weight")}{p_end}
