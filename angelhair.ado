@@ -1,8 +1,7 @@
-cap program drop angelhair
 program define angelhair 
 	syntax varlist(min=2 max=2), by(varname) ///
 		[ hnum(integer 20)  ///
-		hcolor(string) ]
+		hcolor(string) * ]
 		
 	if "`hcolor'" == "" {
 		local hcolor "red"
@@ -27,11 +26,8 @@ program define angelhair
 	}
 
 
-	twoway scatter `varlist', mcolor("white") `formula' , legend(off)
+	twoway scatter `varlist', mcolor("white") `formula' , legend(off) `options'
 
 	restore
 
 end
-
-webuse pig, clear
-angelhair weight week, by(id) hnum(5) hcolor("blue")
