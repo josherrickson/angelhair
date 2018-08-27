@@ -2,7 +2,8 @@ program define angelhair
   syntax varlist(min=2 max=2), by(varname) ///
     [ hnum(integer 20)  ///
     hcolor(string) ///
-    bgcolor(string) * ]
+    bgcolor(string) ///
+		seed(integer -1) * ]
 
   if "`hcolor'" == "" {
     local hcolor "red"
@@ -17,6 +18,11 @@ program define angelhair
   qui tab `by', matrow(ids)
   preserve
   svmat ids
+
+	if `seed' >= 0 {
+		set seed `seed'
+	}
+	
   gen ran = runiform() if !missing(ids)
   sort ran in 1/`num'
 

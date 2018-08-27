@@ -25,6 +25,7 @@
 {synopt :{opth hnum(integer)}}The number of random {bf:by} groups to highlight. Default {bf:20}.{p_end}
 {synopt :{opth hcolor(string)}}The color of the highlighted lines. Default {bf:red}.{p_end}
 {synopt :{opth bgcolor(string)}}The color of the background (non-highlighted) lines. Default {bf:gs13}.{p_end}
+{synopt :{opth seed(integer)}}Setting a seed will select the same random subset of groups to highlight.{p_end}
 
 {synopt :{it:twoway_options}}any options documented in {manhelpi twoway_options G-3} such as label or axis modification{p_end}
 
