@@ -23,7 +23,7 @@ program define angelhair
 		set seed `seed'
 	}
 	
-  gen ran = runiform() if !missing(ids)
+  quietly gen ran = runiform() if !missing(ids)
   sort ran in 1/`num'
 
   forvalues i = 1/`num' {
