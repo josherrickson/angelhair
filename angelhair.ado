@@ -1,3 +1,4 @@
+cap program drop angelhair
 program define angelhair
   syntax varlist(min=2 max=2), by(varname) ///
     [ hnum(integer 20)  ///
@@ -28,9 +29,11 @@ program define angelhair
 
   forvalues i = 1/`num' {
     local id = ids[`i']
-    local color = "`bgcolor'"
-    if `i' > `num' - `hnum' {
-      local color = "`hcolor'"
+    if `hnum' >= 0 {
+        local color = "`bgcolor'"
+        if `i' > `num' - `hnum' {
+          local color = "`hcolor'"
+        }
     }
     local formula `formula' || line `varlist' if `by' == `id', lcolor("`color'")
   }
