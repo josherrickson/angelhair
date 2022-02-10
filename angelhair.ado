@@ -4,6 +4,7 @@ program define angelhair
     [ hnum(integer 20)  ///
     hcolor(string) ///
     bgcolor(string) ///
+	MAXlines(integer 0) ///
 		seed(integer -1) * ]
 
   if "`hcolor'" == "" {
@@ -13,8 +14,17 @@ program define angelhair
     local bgcolor "gs13"
   }
 
-  qui levelsof `by'
-  local num = r(r)
+  if `maxlines' > 0 {
+  	local num = `maxlines'
+  }
+  else {
+	  qui levelsof `by'
+	  local num = r(r)
+  }
+  if `num' <= `hnum' {
+  	display as error "maxlines must be greated than hnum"
+	error 197
+  }
 
   qui tab `by', matrow(ids)
   preserve

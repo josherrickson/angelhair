@@ -25,6 +25,7 @@
 {synopt :{opth hnum(integer)}}The number of random {bf:by} groups to highlight. Default {bf:20}. {p_end}
 {synopt :{opth hcolor(string)}}The color of the highlighted lines. Default {bf:red}.{p_end}
 {synopt :{opth bgcolor(string)}}The color of the background (non-highlighted) lines. Default {bf:gs13}.{p_end}
+{synopt :{opth MAXlines(integer)}}The maximum number of lines to draw. Default {bf:0}, to draw all lines.{p_end}
 {synopt :{opth seed(integer)}}Setting a seed will select the same random subset of groups to highlight.{p_end}
 
 {synopt :{it:twoway_options}}any options documented in {manhelpi twoway_options G-3} such as label or axis modification{p_end}
@@ -46,6 +47,11 @@ selection of {it:hnum} individual trajectories.
 The {it:hnum} argument should generally be a strictly positive value. A value of 0 makes all groups the {it:bgcolor}; a
 negative value allows each group to have its own color (making a more traditional spaghetti plot).
 
+{pstd}
+If the overall number of individuals is so high that the background lines are messy, use {it:maxlines} to restrict the
+total number. E.g. {it:hnum(10) maxlines(30)} will display 10 highlighted lines and 20 background lines. Set {it:maxlines}
+to 0 (the default) to display all lines. {it:maxlines} must be strictly larger than {it:hnum}.
+
 {marker examples}{...}
 {title:Examples}
 
@@ -62,3 +68,8 @@ We can make all the lines the same {it:bgcolor} by setting {it:hnum} to 0:
 To get a traditional spaghetti plot, pass a negative value to {it:hnum}:
 
 {phang2}{stata angelhair weight week, by(id) hnum(-1) xtitle("Week") ytitle("Weight"): . angelhair weight week, by(id) hnum(-1) xtitle("Week") ytitle("Weight")}{p_end}
+
+{pstd}
+We can plot overall less lines by manipulating both {it:hnum} and {itmaxlines}
+
+{phang2}{stata angelhair weight week, by(id) hnum(5) maxlines(10) xtitle("Week") ytitle("Weight"): . angelhair weight week, by(id) hnum(5) maxlines(10) xtitle("Week") ytitle("Weight")}{p_end}
