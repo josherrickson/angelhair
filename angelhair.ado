@@ -2,6 +2,7 @@ program define angelhair
   syntax varlist(min=2 max=2), by(varname) ///
     [ hnum(integer 20)  ///
     hcolor(string) ///
+    RAinbow ///
     bgcolor(string) ///
 	MAXlines(integer 0) ///
 		seed(integer -1) * ]
@@ -45,6 +46,10 @@ program define angelhair
 	
   quietly gen ran = runiform() if !missing(ids)
   sort ran in 1/`num'
+  
+  local rainbow_colors "blue blue cranberry cyan dkgreen dknavy dkorange ebblue emerald erose forest_green gold green khaki lavender lime ltblue magenta maroon midblue mint olive orange orange_red pink purple red sand sienna teal yellow sunflowerlime"
+
+  
 
   forvalues i = 1/`num' {
     local id = ids[`i']
@@ -52,6 +57,9 @@ program define angelhair
         local color = "`bgcolor'"
         if `i' > `num' - `hnum' {
           local color = "`hcolor'"
+          if "`rainbow'" == "rainbow" {
+              local color: word `i' of `rainbow_colors'
+          }
         }
     }
     local formula `formula' || line `varlist' if `newby' == `id', lcolor("`color'")

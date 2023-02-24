@@ -24,6 +24,7 @@
 {synopt :{opth by(varname)}}The variable identifying group membership.{p_end}
 {synopt :{opth hnum(integer)}}The number of random {bf:by} groups to highlight. Default {bf:20}. {p_end}
 {synopt :{opth hcolor(string)}}The color of the highlighted lines. Default {bf:red}.{p_end}
+{synopt :{opth RAinbow}}Ignore {bf:hcolor} and randomly color highlighted lines.{p_end}
 {synopt :{opth bgcolor(string)}}The color of the background (non-highlighted) lines. Default {bf:gs13}.{p_end}
 {synopt :{opth MAXlines(integer)}}The maximum number of lines to draw. Default {bf:0}, to draw all lines.{p_end}
 {synopt :{opth seed(integer)}}Setting a seed will select the same random subset of groups to highlight.{p_end}
