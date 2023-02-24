@@ -1,4 +1,3 @@
-cap program drop angelhair
 program define angelhair
   syntax varlist(min=2 max=2), by(varname) ///
     [ hnum(integer 20)  ///
@@ -25,14 +24,24 @@ program define angelhair
   	display as error "maxlines must be greated than hnum"
 	error 197
   }
+  
+  * If `by` is string, create numeric version
+  capture confirm numeric variable `by'
+  tempvar newby
+  if (_rc != 0) {
+	encode `by', gen(`newby')
+  }
+  else {
+  	gen `newby' = `by'
+  }
 
-  qui tab `by', matrow(ids)
+  qui tab `newby', matrow(ids)
   preserve
   svmat ids
 
-	if `seed' >= 0 {
-		set seed `seed'
-	}
+  if `seed' >= 0 {
+    set seed `seed'
+  }
 	
   quietly gen ran = runiform() if !missing(ids)
   sort ran in 1/`num'
@@ -45,7 +54,7 @@ program define angelhair
           local color = "`hcolor'"
         }
     }
-    local formula `formula' || line `varlist' if `by' == `id', lcolor("`color'")
+    local formula `formula' || line `varlist' if `newby' == `id', lcolor("`color'")
   }
 
 
