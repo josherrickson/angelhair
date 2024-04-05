@@ -24,7 +24,7 @@
 {synopt :{opth by(varname)}}The variable identifying group membership.{p_end}
 {synopt :{opth hnum(integer)}}The number of random {bf:by} groups to highlight. Default {bf:20}. {p_end}
 {synopt :{opth hcolor(string)}}The color of the highlighted lines. Default {bf:red}.{p_end}
-{synopt :{opth RAinbow}}Ignore {bf:hcolor} and randomly color highlighted lines.{p_end}
+{synopt :{opt RAinbow}}Ignore {bf:hcolor} and randomly color highlighted lines.{p_end}
 {synopt :{opth bgcolor(string)}}The color of the background (non-highlighted) lines. Default {bf:gs13}.{p_end}
 {synopt :{opth MAXlines(integer)}}The maximum number of lines to draw. Default {bf:0}, to draw all lines.{p_end}
 {synopt :{opth seed(integer)}}Setting a seed will select the same random subset of groups to highlight.{p_end}
@@ -51,7 +51,7 @@ negative value allows each group to have its own color (making a more traditiona
 {pstd}
 If the overall number of individuals is so high that the background lines are messy, use {it:maxlines} to restrict the
 total number. E.g. {it:hnum(10) maxlines(30)} will display 10 highlighted lines and 20 background lines. Set {it:maxlines}
-to 0 (the default) to display all lines. {it:maxlines} must be strictly larger than {it:hnum}.
+to 0 (the default) to display all lines. {it:maxlines} must be strictly larger than {it:hnum} if it is non-zero.
 
 {marker examples}{...}
 {title:Examples}
